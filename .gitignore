@@ -1,0 +1,4 @@
+.vscode/
+*.pyc
+datasets/Pinky40
+logs/events*

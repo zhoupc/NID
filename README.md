@@ -1,37 +1,15 @@
 # NID
-**NID: a neuron image denoiser**
+**NID: a neuronal imaging denoiser**: this package is developed for denoising both the spatial footprints and temporal signals of individual neurons. 
 
+**spatial denoiser**
+|short name   |paper   | implementation|
+|---|---|---|
+|   |   |   |  
 
-
-## Download
-
-OPTION 1: download the package using this [LINK](https://github.com/zhoupc/NID/archive/master.zip)
-
-OPTION 2: (recommended) clone the git repository <https://github.com/zhoupc/NID.git>. In this way, you are able to get the latest updates of the package within 1-line command or 1-button click. 
-
-
-
-## Installation 
-
-### MATLAB
-
-Run cnmfe_setup.m to add CNMF-E package to the search path of MATLAB
-
-`>> run matlab_setup`
-
-
-
-### Python
-
-
-
-## Questions
-
+**temporal denoiser**
 
 
 ## Reference
-
-
 
 ## License
 
