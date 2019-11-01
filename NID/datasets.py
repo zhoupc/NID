@@ -46,7 +46,7 @@ class Pinky40(Dataset):
 
         # download the file
         if download:
-            self.download
+            self.download()
 
         # check the training and testing data
         if not self._check_exists_processed():
@@ -147,7 +147,7 @@ class Pinky40(Dataset):
         if os.path.exists(self.training_file):
             os.remove(self.training_file)
         h5f = h5py.File(self.training_file, 'w')
-        scales = [2, 1.5, 1, 0.8]
+        scales = [2, 1.5, 1, 0.8, 0.5]
         train_num = 0
         for i in range(imgs_train.shape[-1]):
             img = imgs_train[:, :, i]
@@ -207,6 +207,7 @@ def Im2Patch(img, win, stride=1):
     if endh < win:
         img[:, :, endh:win] = 0
         endh = win
+        
     patch = img[:, 0:endw-win+0+1:stride, 0:endh-win+0+1:stride]
     TotalPatNum = patch.shape[1] * patch.shape[2]
     Y = np.zeros([endc, win*win, TotalPatNum], np.float32)
