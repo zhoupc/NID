@@ -16,6 +16,11 @@ The trained model were saved into the folder **/python/logs/*.onnx** and **/pyth
 
 
 We created a MATLAB wrapper that loads the trained models (.onnx files) **/matlab/NID.m**. The file **/matlab/demo_nid.m** illustrates how to run the package. 
+
+
+## Contributors
+* [Pengcheng Zhou](zhoupc.github.io)
+* Amol Pasarkar
 ## Reference
 [1]. EASE :EM-AssistedSourceExtraction1fromcalciumimagingdata
 ## License
