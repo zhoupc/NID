@@ -1,16 +1,23 @@
-# NID
-**NID: a neuronal imaging denoiser**: this package is developed for denoising both the spatial footprints and temporal signals of individual neurons. 
-
+# NID: neural image denoiser
+A package for denoising the noisy neural images using trained machine learning models. The supported models are summarized below: 
 **spatial denoiser**
-|short name   |paper   | implementation|
-|---|---|---|
-|   |   |   |  
+|short name   |paper   | Python| Matlab|
+|---|---|---|---|
+| nn  |  a trained neural network for denoising images [1]| √  |√ |  
 
-**temporal denoiser**
+## Python
+in the folder **/python/**, there is a ipynb file **train_model_with_pinky40** file. This file includes code for model training and testing. 
+
+The trained model were saved into the folder **/python/logs/*.onnx** and **/python/logs/*.pth** for future use. 
+## MATLAB 
+**required packages**
+* [Deep Learning Toolbox](https://www.mathworks.com/products/deep-learning.html)
+* [Deep Learning Toolbox Converter](https://www.mathworks.com/matlabcentral/fileexchange/67296-deep-learning-toolbox-converter-for-onnx-model-format)
 
 
+We created a MATLAB wrapper that loads the trained models (.onnx files) **/matlab/NID.m**. The file **/matlab/demo_nid.m** illustrates how to run the package. 
 ## Reference
-
+[1]. EASE :EM-AssistedSourceExtraction1fromcalciumimagingdata
 ## License
 
 Copyright 2018 Pengcheng Zhou

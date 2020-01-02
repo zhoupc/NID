@@ -4,8 +4,8 @@ classdef NID < handle
         net = [];
         connector = []
         nid_folder = '';    % the folder
-        net_name = 'net_17';
-        connector_name = 'net_17_connector';
+        net_name = 'pinky40_net_17';
+        connector_name = '';
         iter = 2;
         input_size = [];
         fill_gap = false;
@@ -16,12 +16,13 @@ classdef NID < handle
         function obj = NID(input_size)
             % load a net if obj.net is empty
             if isempty(obj.net)
-                nid_folder = fileparts(mfilename('fullpath'));
-                net_file = fullfile(nid_folder, 'logs', [obj.net_name, '.onnx']);
-                connector_file = fullfile(nid_folder, 'logs', [obj.connector_name, '.onnx']);
+                nid_folder = fileparts(fileparts(mfilename('fullpath')));
+                net_file = fullfile(nid_folder, 'python', 'logs', [obj.net_name, '.onnx']);
                 obj.net = importONNXNetwork(net_file, 'OutputLayerType', 'regression');
-                obj.connector = importONNXNetwork(connector_file, 'OutputLayerType', 'regression');
-                
+                if ~isempty(obj.connector_name)
+                    connector_file = fullfile(nid_folder, 'logs', [obj.connector_name, '.onnx']);
+                    obj.connector = importONNXNetwork(connector_file, 'OutputLayerType', 'regression');
+                end
                 obj.input_size = obj.net.Layers(1).InputSize;
             end
             
@@ -46,14 +47,15 @@ classdef NID < handle
                 obj.input_size = input_size;
                 
                 % change connector
-                input_layer = obj.connector.Layers(1);
-                input_layer_new = imageInputLayer(input_size, 'name', ...
-                    input_layer.Name, 'Normalization', input_layer.Normalization);
-                
-                lgraph = [input_layer_new
-                    obj.connector.Layers(2:end)];
-                
-                obj.connector = assembleNetwork(lgraph);
+                if ~isempty(obj.connector_name)
+                    input_layer = obj.connector.Layers(1);
+                    input_layer_new = imageInputLayer(input_size, 'name', ...
+                        input_layer.Name, 'Normalization', input_layer.Normalization);
+                    lgraph = [input_layer_new
+                        obj.connector.Layers(2:end)];
+                    
+                    obj.connector = assembleNetwork(lgraph);
+                end
                 obj.input_size = input_size;
             else
                 fprintf('no need to change image size');
@@ -88,7 +90,7 @@ classdef NID < handle
                 else
                     scale = 0.1 / sn;
                 end
-                res = obj.net.predict(res * scale) / scale; 
+                res = obj.net.predict(res * scale) / scale;
                 res_all{m} = res;
                 
                 temp = (img - res); %.*(img_supp);
