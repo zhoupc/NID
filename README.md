@@ -1,9 +1,9 @@
 # NID: neural image denoiser
 A package for denoising the noisy neural images using trained machine learning models. The supported models are summarized below: 
-**spatial denoiser**
-|short name   |paper   | Python| Matlab|
-|---|---|---|---|
-| nn  |  a trained neural network for denoising images [1]| √  |√ |  
+
+| name | detail | Python| Matlab|
+|---   |---     |---    |---    |
+| nn   |  a trained neural network for denoising images [1]| √  |√ |  
 
 ## Python
 in the folder **/python/**, there is a ipynb file **train_model_with_pinky40** file. This file includes code for model training and testing. 
