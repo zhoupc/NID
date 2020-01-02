@@ -2,3 +2,5 @@
 *.pyc
 datasets/Pinky40
 logs/events*
+.ipynb_checkpoints/
+
